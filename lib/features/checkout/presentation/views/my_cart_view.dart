@@ -19,8 +19,14 @@ class MyCartView extends StatelessWidget {
           style: Styles.style24,
         ),
       ),
-      body: const Center(
-        child: Text('My Cart'),
+      body: Column(
+        children: [
+          Image.asset(
+            "assets/images/image.png",
+            height: 500,
+            width: 400,
+          )
+        ],
       ),
     );
   }
