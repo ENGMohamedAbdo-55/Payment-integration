@@ -2,7 +2,7 @@
 
 import '../../../../../core/utils/styles.dart';
 
-AppBar BuildAppbar({required final title}) {
+AppBar BuildAppbar({ final String? title}) {
     return AppBar(
         leading: const Icon(Icons.arrow_back_outlined,
             size: 35, color: Colors.black),
@@ -10,7 +10,7 @@ AppBar BuildAppbar({required final title}) {
         elevation: 0,
         centerTitle: true,
         title:  Text(
-          title,
+          title??"",
           textAlign: TextAlign.center,
           style: Styles.style24,
         ),
