@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:payment_integration_methods/features/checkout/data/repos/checkout_repo.dart';
 
-import '../../../data/models/payment_itent_model/payment_intent_payment_model.dart';
+import '../../../data/models/payment_intent_input_model.dart';
 
 part 'payment_state.dart';
 

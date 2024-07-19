@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:payment_integration_methods/core/utils/errors/failure.dart';
 import 'package:payment_integration_methods/core/utils/stripe_service.dart';
 
-import 'package:payment_integration_methods/features/checkout/data/models/payment_itent_model/payment_intent_payment_model.dart';
+import 'package:payment_integration_methods/features/checkout/data/models/payment_intent_input_model.dart';
 
 import 'checkout_repo.dart';
 

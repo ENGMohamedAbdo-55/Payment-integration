@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:payment_integration_methods/core/utils/api_keys.dart';
 import 'package:payment_integration_methods/core/utils/api_service.dart';
-import 'package:payment_integration_methods/features/checkout/data/models/payment_itent_model/payment_intent_payment_model.dart';
+import 'package:payment_integration_methods/features/checkout/data/models/ephemeral_key_mpdel/ephemeral_key_mpdel.dart';
+import 'package:payment_integration_methods/features/checkout/data/models/init_payment_sheet_input_model.dart';
+import 'package:payment_integration_methods/features/checkout/data/models/payment_intent_input_model.dart';
 import 'package:payment_integration_methods/features/checkout/data/models/payment_itent_model/payment_itent_model.dart';
 
 class StripeService {
@@ -21,10 +23,14 @@ class StripeService {
     return paymentIntentModel;
   }
 
-  Future initPaymentSheet({required String paymentIntentClientSecret}) async {
-   await Stripe.instance.initPaymentSheet(
+  Future initPaymentSheet({
+    required InitPaymentSheetInputModel initPaymentSheetInputModel,
+  }) async {
+    await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
-      paymentIntentClientSecret: paymentIntentClientSecret,
+      paymentIntentClientSecret: initPaymentSheetInputModel.clientSecret,
+      customerEphemeralKeySecret: initPaymentSheetInputModel.ephemeralKeySecret,
+      customerId:initPaymentSheetInputModel.customerId,
       merchantDisplayName: "Eng.Mohamed Abdo",
     ));
   }
@@ -45,9 +51,34 @@ class StripeService {
       paymentIntentInputModel,
     );
 
+    var ephemeralKey = await createEphemeralKey(customerId: paymentIntentInputModel.customerId);
+    var initPaymentSheetInputModel = InitPaymentSheetInputModel(
+      ephemeralKeySecret: ephemeralKey.secret!,
+      clientSecret: paymentIntentModel.clientSecret!,
+      customerId: paymentIntentInputModel.customerId,
+    );
+
+
     await initPaymentSheet(
-        paymentIntentClientSecret: paymentIntentModel.clientSecret!);
+       initPaymentSheetInputModel: initPaymentSheetInputModel);
     await displayPaymentSheet();
   }
+
+  Future<EphemeralKeyModel> createEphemeralKey({
+    required String customerId,
+  }) async {
+    var response = await apiService.post(
+        body: {
+          "customer": customerId,
+        },
+        contentType: Headers.formUrlEncodedContentType,
+        url: "https://api.stripe.com/v1/ephemeral_keys",
+        token: ApiKeys.secretKey,
+        headers: {
+          'Authorization': 'Bearer ${ApiKeys.secretKey} ',
+          'Stripe-Version': '2024-06-20',
+        });
+    var ephemeralKey = EphemeralKeyModel.fromJson(response.data);
+    return ephemeralKey;
+  }
 }
-  

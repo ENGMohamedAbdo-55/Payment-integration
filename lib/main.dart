@@ -4,7 +4,7 @@ import 'package:payment_integration_methods/core/utils/api_keys.dart';
 import 'features/checkout/presentation/views/my_cart_view.dart';
 
 void main() {
-  Stripe.publishableKey=ApiKeys.publishableKey;
+  Stripe.publishableKey = ApiKeys.publishableKey;
   runApp(const PaymentIntegrationMethods());
 }
 
@@ -23,4 +23,3 @@ class PaymentIntegrationMethods extends StatelessWidget {
 //? paymentIntentObject  create  payment intent (amount, currency)
 //? initialize payment sheet (paymentIntentClientSecret)
 //? present payment sheet
-
