@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:payment_integration_methods/features/checkout/presentation/views/widgets/build_appbar.dart';
+import 'widgets/build_appbar.dart';
 
 import 'widgets/thank_you_view_body.dart';
 

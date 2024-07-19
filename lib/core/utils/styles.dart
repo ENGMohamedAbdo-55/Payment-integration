@@ -44,4 +44,3 @@ abstract class Styles {
     height: 0,
   );
 }
-

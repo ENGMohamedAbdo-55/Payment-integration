@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:flutter_credit_card/flutter_credit_card.dart';
-import 'package:payment_integration_methods/features/checkout/presentation/views/thanks_view.dart';
-import 'package:payment_integration_methods/features/checkout/presentation/views/widgets/main_button.dart';
+import '../thanks_view.dart';
+import 'main_button.dart';
 
 import 'custom_credit_card.dart';
 import 'payment_method_item.dart';

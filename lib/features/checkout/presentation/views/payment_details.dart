@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:payment_integration_methods/features/checkout/presentation/views/widgets/build_appbar.dart';
 
+import 'widgets/build_appbar.dart';
 import 'widgets/payment_details_view_body.dart';
 
 class PaymentDetailsView extends StatelessWidget {
@@ -8,12 +8,11 @@ class PaymentDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: BuildAppbar(
         title: "Payment Details",
       ),
       body: const PaymentDetailsViewBody(),
-
     );
   }
-} 
+}
