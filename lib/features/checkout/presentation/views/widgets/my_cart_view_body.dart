@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:payment_integration_methods/features/checkout/presentation/views/payment_details.dart';
-import 'package:payment_integration_methods/features/checkout/presentation/views/thanks_view.dart';
-import 'package:payment_integration_methods/features/checkout/presentation/views/widgets/payment_methods_list_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:payment_integration_methods/features/checkout/data/repos/checkout_repo_impl.dart';
+import 'package:payment_integration_methods/features/checkout/presentation/manager/cubit/payment_cubit.dart';
+import '../payment_details.dart';
+import '../thanks_view.dart';
+import 'payment_methods_bottom_sheet.dart';
+import 'payment_methods_list_view.dart';
 
 import '../../../../../core/utils/styles.dart';
 import 'cart_info_item.dart';
@@ -65,47 +69,16 @@ class MyCartViewBody extends StatelessWidget {
               showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return const PaymentMethodsBottomSheet();
+                    return BlocProvider(
+                      create: (context) => PaymentCubit(CheckoutRepoImpl()),
+                      child: const PaymentMethodsBottomSheet(),
+                    );
                   });
             },
           ),
           const SizedBox(
             height: 12,
           )
-        ],
-      ),
-    );
-  }
-}
-
-class PaymentMethodsBottomSheet extends StatelessWidget {
-  const PaymentMethodsBottomSheet({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(
-            height: 16,
-          ),
-          const PaymentMethodsListView(),
-          const SizedBox(
-            height: 32,
-          ),
-          MainButton(
-            title: "Continue",
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ThankYouView(),
-                ),
-              );
-            },
-          ),
         ],
       ),
     );

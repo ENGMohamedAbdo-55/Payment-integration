@@ -1,11 +1,13 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/styles.dart';
 
 class MainButton extends StatelessWidget {
-  const MainButton({super.key, this.onTap, required this.title});
+  const MainButton(
+      {super.key, this.onTap, required this.title, this.isLoading = false});
   final void Function()? onTap;
   final String title;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -18,11 +20,13 @@ class MainButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         child: Center(
-            child: Text(
-          title,
-          textAlign: TextAlign.center,
-          style: Styles.style20,
-        )),
+            child: isLoading
+                ? const CircularProgressIndicator()
+                : Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: Styles.style20,
+                  )),
       ),
     );
   }

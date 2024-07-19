@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 import 'payment_method_item.dart';
 
@@ -13,9 +14,9 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
   final List<String> paymentMethods = const [
     "assets/images/card.png",
     "assets/images/paypal.png",
-    "assets/images/applepay.png",
+    "assets/images/th.jfif",
   ];
-   int selectedIndex = 0;
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -28,10 +29,8 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: GestureDetector(
                 onTap: () {
-                  selectedIndex=index;
-                  setState(() {
-                    
-                  });
+                  selectedIndex = index;
+                  setState(() {});
                 },
                 child: PaymentMethodItem(
                   isActive: selectedIndex == index,

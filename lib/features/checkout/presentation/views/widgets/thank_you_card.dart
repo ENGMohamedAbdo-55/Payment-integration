@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:payment_integration_methods/features/checkout/presentation/views/widgets/total_price_item.dart';
+import 'total_price_item.dart';
 
 import '../../../../../core/utils/styles.dart';
 import 'card_info_widget.dart';
@@ -15,7 +15,7 @@ class ThankYouCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: ShapeDecoration(
-        color: const Color(0xFFEDEDED ),
+        color: const Color(0xFFEDEDED),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
