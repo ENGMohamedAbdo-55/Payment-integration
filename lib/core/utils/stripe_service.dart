@@ -30,7 +30,7 @@ class StripeService {
         paymentSheetParameters: SetupPaymentSheetParameters(
       paymentIntentClientSecret: initPaymentSheetInputModel.clientSecret,
       customerEphemeralKeySecret: initPaymentSheetInputModel.ephemeralKeySecret,
-      customerId:initPaymentSheetInputModel.customerId,
+      customerId: initPaymentSheetInputModel.customerId,
       merchantDisplayName: "Eng.Mohamed Abdo",
     ));
   }
@@ -51,16 +51,16 @@ class StripeService {
       paymentIntentInputModel,
     );
 
-    var ephemeralKey = await createEphemeralKey(customerId: paymentIntentInputModel.customerId);
+    var ephemeralKey = await createEphemeralKey(
+        customerId: paymentIntentInputModel.customerId);
     var initPaymentSheetInputModel = InitPaymentSheetInputModel(
       ephemeralKeySecret: ephemeralKey.secret!,
       clientSecret: paymentIntentModel.clientSecret!,
       customerId: paymentIntentInputModel.customerId,
     );
 
-
     await initPaymentSheet(
-       initPaymentSheetInputModel: initPaymentSheetInputModel);
+        initPaymentSheetInputModel: initPaymentSheetInputModel);
     await displayPaymentSheet();
   }
 

@@ -7,5 +7,5 @@ class InitPaymentSheetInputModel {
     required this.clientSecret,
     required this.ephemeralKeySecret,
     required this.customerId,
-  }); 
+  });
 }
